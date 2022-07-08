@@ -10,13 +10,11 @@ import Header from "../components/sections/header";
 import Meta from "../components/meta";
 
 export default function Home({ page, settings, mainNav, socials }) {
-  const { pageBuilder } = page;
-  const { siteLogo, websiteTitle, twitterHandle, copyright } = settings;
   return (
     <div>
-      <Meta page={page} title={websiteTitle} twitter={twitterHandle} />
-      <Header mainNav={mainNav} socials={socials} logo={siteLogo} />
-      {pageBuilder
+      {/* <Meta page={page} title={websiteTitle} twitter={twitterHandle} />
+      <Header mainNav={mainNav} socials={socials} logo={siteLogo} /> */}
+      {/* {pageBuilder
         ? pageBuilder.map((section) => {
             let el = null;
 
@@ -30,7 +28,8 @@ export default function Home({ page, settings, mainNav, socials }) {
             }
             return el;
           })
-        : null}
+        : null} */}
+        <h1>This is the home page</h1>
     </div>
   );
 }
