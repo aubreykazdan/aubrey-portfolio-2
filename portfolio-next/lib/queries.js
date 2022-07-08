@@ -4,17 +4,7 @@ export const homeQuery = `
   ogImage{
   asset->
   },
-  pageBuilder[]{
-    ...,
-    video {
-      asset->
-    },
-    posts[]->,
-    events[]->,
-    internal->{
-      "slug": slug.current
-    }
-  }
+  pageBuilder[],
 }
 `;
 
@@ -24,17 +14,6 @@ export const aboutQuery = `
   ogImage{
   asset->
   },
-  pageBuilder[]{
-    ...,
-    video {
-      asset->
-    },
-    posts[]->,
-    events[]->,
-    internal->{
-      "slug": slug.current
-    }
-  }
 }
 `;
 
@@ -44,17 +23,7 @@ export const blogQuery = `
   ogImage{
   asset->
   },
-  pageBuilder[]{
-    ...,
-    video {
-      asset->
-    },
-    posts[]->,
-    events[]->,
-    internal->{
-      "slug": slug.current
-    }
-  }
+  pageBuilder[],
 }
 `;
 
@@ -64,17 +33,7 @@ export const contactQuery = `
   ogImage{
   asset->
   },
-  pageBuilder[]{
-    ...,
-    video {
-      asset->
-    },
-    posts[]->,
-    events[]->,
-    internal->{
-      "slug": slug.current
-    }
-  }
+  pageBuilder[]
 }
 `;
 
@@ -84,68 +43,29 @@ export const projectsQuery = `
   ogImage{
   asset->
   },
-  pageBuilder[]{
-    ...,
-    video {
-      asset->
-    },
-    posts[]->,
-    events[]->,
-    internal->{
-      "slug": slug.current
-    }
-  }
+  pageBuilder[],
 }
 `;
 
-export const eventsQuery = `
-*[_type == "page" && slug.current == "events"] [0]{
-  ...,
-  ogImage{
-  asset->
-  },
-  pageBuilder[]{
-    ...,
-    video {
-      asset->
-    },
-    posts[]->,
-    events[]->,
-    internal->{
-      "slug": slug.current
-    }
-  }
-}
-`;
 
 export const siteSettingsQuery = `
 *[_type == "siteSettings"][0]{
-  frontpage->,
-  siteLogo[0],
-  twitterHandle,
-  websiteTitle,
-  copyright,
-  url
+  ...,
+  ogImage {
+  asset->
+  }
 }
 `;
 
-export const mainNavQuery = `
-*[_type == "navMenu" && title == "Main"][0] {
-  _id,
-  title,
+export const navQuery = `
+*[_type == "navMenu"][0]{
   items[]{
     _key,
-    _type,
-    heading,
-    external,
-    internal->{
-    slug{
-      current
-      }
-    }
+    link,
+    title,
+    "path": path->slug.current
   }
 }
-
 `;
 
 export const socialsQuery = `
@@ -159,30 +79,5 @@ export const socialsQuery = `
   twitter,
   facebook,
   youtube,
-}
-`;
-
-export const eventsListQuery = `
-*[pageBuilder[0]._type == "eventsList"]{
-  ... {
-   "eventsList": pageBuilder[]{
-     _key,
-     _type,
-     heading,
-     subtitle,   
-     events[]->{
-       _id,
-       title,
-       subtitle,
-       ageLimit,
-       "slug": slug.current,
-       location,
-       startDate,
-       endDate,
-       "image": image.asset,
-       "alt": image.alt
-       },
-   }
- }
 }
 `;
